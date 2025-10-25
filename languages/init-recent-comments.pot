@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Init Recent Comments\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Init Recent Comments"
+msgstr ""
+
+msgid "Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
+msgstr ""
+
+msgid "ago"
+msgstr ""
+
+msgid "In"
+msgstr ""
+
+msgid "General Settings"
+msgstr ""
+
+msgid "Disable built-in CSS"
+msgstr ""
+
+msgid "Use your own theme styling instead of the plugin’s CSS."
+msgstr ""
+
+msgid "Init Recent Comments Settings"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Shortcode Preview"
+msgstr ""
+
+msgid "Shortcode Builder"
+msgstr ""
+
+msgid "Number of Comments"
+msgstr ""
+
+msgid "Pagination (optional)"
+msgstr ""
+
+msgid "Max Height (e.g. 300px)"
+msgstr ""
+
+msgid "Theme"
+msgstr ""

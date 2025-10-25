@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Init Recent Comments\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Init Recent Comments"
+msgstr "Init Recent Comments"
+
+msgid "Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
+msgstr "Hiển thị bình luận gần đây với mẫu tùy chỉnh và CSS gọn gàng. Nhẹ, linh hoạt và được xây dựng cho các trang WordPress hiện đại."
+
+msgid "ago"
+msgstr "trước"
+
+msgid "In"
+msgstr "Trong"
+
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+msgid "Disable built-in CSS"
+msgstr "Tắt CSS mặc định của plugin"
+
+msgid "Use your own theme styling instead of the plugin’s CSS."
+msgstr "Sử dụng giao diện từ theme của bạn thay vì CSS sẵn có của plugin."
+
+msgid "Init Recent Comments Settings"
+msgstr "Cài đặt Init Recent Comments"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Shortcode Preview"
+msgstr "Xem trước shortcode"
+
+msgid "Shortcode Builder"
+msgstr "Trình tạo shortcode"
+
+msgid "Number of Comments"
+msgstr "Số lượng bình luận"
+
+msgid "Pagination (optional)"
+msgstr "Phân trang (tùy chọn)"
+
+msgid "Max Height (e.g. 300px)"
+msgstr "Chiều cao tối đa (vd: 300px)"
+
+msgid "Theme"
+msgstr "Giao diện"
