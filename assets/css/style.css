@@ -170,3 +170,28 @@
 .init-review-criteria-list strong {
   font-weight: 600;
 }
+
+/* Replying to */
+.init-comment-replying {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  padding: 2px 0;
+  border-left: 3px solid #1e87f0;
+  padding-left: 8px;
+}
+
+.init-comment-replying-label {
+  color: #666;
+}
+
+.init-comment-replying-author {
+  color: #1e87f0;
+  font-weight: 700;
+}
+
+/* Dark mode for replying */
+.init-recent-comments.dark .init-comment-replying-label {
+  color: #aaa;
+}

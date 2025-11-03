@@ -1,12 +1,12 @@
 === Init Recent Comments – Templated, Modern, Minimal ===
-Contributors: brokensmile.2103  
-Tags: comments, recent comments, widget, shortcode, template  
+Contributors: brokensmile.2103
+Tags: comments, recent comments, widget, shortcode, template
 Requires at least: 5.5  
-Tested up to: 6.8  
-Requires PHP: 7.4  
-Stable tag: 1.2
-License: GPLv2 or later  
-License URI: https://www.gnu.org/licenses/gpl-2.0.html  
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 1.3
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
 
@@ -26,6 +26,8 @@ Key design goals:
 Perfect for blogs, news sites, or anyone who wants a better way to show active discussions.
 
 This plugin is part of the [Init Plugin Suite](https://en.inithtml.com/init-plugin-suite-minimalist-powerful-and-free-wordpress-plugins/) — a collection of minimalist, fast, and developer-focused tools for WordPress.
+
+GitHub repository: [https://github.com/brokensmile2103/init-recent-comments](https://github.com/brokensmile2103/init-recent-comments)
 
 == Features ==
 
@@ -62,6 +64,11 @@ This plugin provides multiple filters to help developers customize caching behav
 Control the cache TTL (in seconds) for recent comments.  
 **Applies to:** Recent Comments Query  
 **Params:** `int $ttl`
+
+**`init_plugin_suite_recent_comments_query_args`**  
+Allows developers to modify or extend the WP_Comment query arguments before the query runs.  
+**Applies to:** Recent Comments Query  
+**Params:** `array $args`
 
 **`init_plugin_suite_recent_reviews_ttl`**  
 Control the cache TTL (in seconds) for recent reviews.  
@@ -101,6 +108,18 @@ Absolutely. Copy `templates/comment-item.php` and `templates/wrapper.php` to you
 No. It uses `get_comments()` with sane defaults, no extra queries, no JavaScript.
 
 == Changelog ==
+
+= 1.3 – November 2025 =
+- Added new filter `init_plugin_suite_recent_comments_query_args` allows developers to modify or extend the comment query args before running `get_comments()`
+- Improved recent comments retrieval function:
+  - Supports overriding query parameters via filter (e.g., filter by `post_type`, change `number`, include `meta_query`, etc.)
+  - Maintains full backward compatibility
+- UI update for Reply-to context:
+  - Recent comment items now display "Replying to {Author}" when the comment has a parent
+  - Added minimal CSS styling (non-intrusive, inherits container background)
+- Codebase refinements:
+  - Minor internal cleanups for readability and maintainability
+  - Consistent filter naming across features to match the plugin's prefix standard
 
 = 1.2 – October 12, 2025 =
 - Enhanced caching flexibility for existing functions:

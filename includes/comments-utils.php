@@ -16,7 +16,11 @@ function init_plugin_suite_recent_comments_get_comments( $args = [] ) {
 		'status'      => 'approve',
 		'type'        => 'comment',
 	];
+
 	$args = wp_parse_args( $args, $defaults );
+
+	// Cho phép override args bằng filter
+	$args = apply_filters( 'init_plugin_suite_recent_comments_query_args', $args );
 
 	// Tính offset thủ công vì get_comments không hỗ trợ 'paged'
 	$args['offset'] = ( max( 1, absint( $args['paged'] ) ) - 1 ) * absint( $args['number'] );

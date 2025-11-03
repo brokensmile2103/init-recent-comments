@@ -55,3 +55,6 @@ msgstr "Chiều cao tối đa (vd: 300px)"
 
 msgid "Theme"
 msgstr "Giao diện"
+
+msgid "Replying to"
+msgstr "Trả lời"

@@ -3,13 +3,13 @@
  * Plugin Name: Init Recent Comments
  * Plugin URI: https://inithtml.com/plugin/init-recent-comments/
  * Description: Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
- * Version: 1.2
+ * Version: 1.3
  * Author: Init HTML
  * Author URI: https://inithtml.com/
  * Text Domain: init-recent-comments
  * Domain Path: /languages
  * Requires at least: 5.5
- * Tested up to: 6.8
+ * Tested up to: 6.9
  * Requires PHP: 7.4
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,14 +18,14 @@
 defined('ABSPATH') || exit;
 
 // ===== CONSTANTS ===== //
-define( 'INIT_PLUGIN_SUITE_IRC_VERSION',        '1.2' );
+define( 'INIT_PLUGIN_SUITE_IRC_VERSION',        '1.3' );
 define( 'INIT_PLUGIN_SUITE_IRC_SLUG',           'init-recent-comments' );
 define( 'INIT_PLUGIN_SUITE_IRC_OPTION',         'init_plugin_suite_init_recent_comments_settings' );
 define( 'INIT_PLUGIN_SUITE_IRC_NAMESPACE',      'initreco/v1' );
 
 define( 'INIT_PLUGIN_SUITE_IRC_URL',            plugin_dir_url( __FILE__ ) );
 define( 'INIT_PLUGIN_SUITE_IRC_PATH',           plugin_dir_path( __FILE__ ) );
-define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_URL',     INIT_PLUGIN_SUITE_IRC_URL . 'assets/' );
+define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_URL',     INIT_PLUGIN_SUITE_IRC_URL .  'assets/' );
 define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_PATH',    INIT_PLUGIN_SUITE_IRC_PATH . 'assets/' );
 define( 'INIT_PLUGIN_SUITE_IRC_TEMPLATES_PATH', INIT_PLUGIN_SUITE_IRC_PATH . 'templates/' );
 define( 'INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH',  INIT_PLUGIN_SUITE_IRC_PATH . 'includes/' );
