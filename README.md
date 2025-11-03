@@ -3,7 +3,7 @@
 
 **No widgets. No jQuery. No bloat — just clean, templated output.**
 
-[![Version](https://img.shields.io/badge/stable-v1.2-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
+[![Version](https://img.shields.io/badge/stable-v1.3-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![Made with ❤️ in HCMC](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20in%20HCMC-blue)
 
@@ -53,6 +53,7 @@ This plugin provides multiple filters for customizing cache duration and perform
 | Filter | Description | Applies To | Params |
 |---------|-------------|-------------|---------|
 | `init_plugin_suite_recent_comments_ttl` | Control TTL (in seconds) for recent comments | Recent Comments Query | `int $ttl` |
+| `init_plugin_suite_recent_comments_query_args` | Allow developers to modify/extend the WP_Comment query args before execution | Recent Comments Query | `array $args` |
 | `init_plugin_suite_recent_reviews_ttl` | Control TTL (in seconds) for recent reviews | Recent Reviews Query | `int $ttl` |
 | `init_plugin_suite_total_comments_ttl` | Control TTL (in seconds) for total approved comment counts by post type | Total Comments Query | `int $ttl`, `array $post_types` |
 | `init_plugin_suite_total_by_posts_ttl` | Control TTL (in seconds) for total comments across multiple post IDs | Total by Post IDs Query | `int $ttl`, `array $post_ids` |
