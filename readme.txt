@@ -4,7 +4,7 @@ Tags: comments, recent comments, widget, shortcode, template
 Requires at least: 5.5  
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,7 +109,24 @@ No. It uses `get_comments()` with sane defaults, no extra queries, no JavaScript
 
 == Changelog ==
 
-= 1.3 – November 2025 =
+= 1.4 – November 5, 2025 =
+- Introduced new user-specific shortcodes:
+  - `[init_plugin_suite_user_recent_comments]` — display recent comments made by a specific user
+  - `[init_plugin_suite_user_recent_reviews]` — display recent reviews made by a specific user
+  - Backward-compat maintained: `[init_user_recent_comments]` and `[init_user_recent_reviews]`
+- Both shortcodes reuse existing template system (wrapper.php / review-wrapper.php), ensuring UI consistency
+- Fully supports pagination, theme mode, max height, and query argument overriding through filters
+- Added new helpers for fetching user data:
+  - `init_plugin_suite_recent_comments_get_user_comments()`
+  - `init_plugin_suite_recent_comments_get_user_reviews()`
+- Implemented separate cache groups for user comments & user reviews
+  - TTL fully customizable via filters (`init_plugin_suite_user_recent_comments_ttl`, `init_plugin_suite_user_recent_reviews_ttl`)
+- Updated review item template:
+  - Display reviewer name and avatar resolved from `user_id` instead of relying on non-existing `author_name`
+  - Fallback support for anonymous reviewers
+- Internal improvements and cleanup for code reliability and maintainability
+
+= 1.3 – November 4, 2025 =
 - Added new filter `init_plugin_suite_recent_comments_query_args` allows developers to modify or extend the comment query args before running `get_comments()`
 - Improved recent comments retrieval function:
   - Supports overriding query parameters via filter (e.g., filter by `post_type`, change `number`, include `meta_query`, etc.)

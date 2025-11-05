@@ -53,6 +53,75 @@ function init_plugin_suite_recent_comments_get_comments( $args = [] ) {
 }
 
 /**
+ * Helper: Lấy recent comments của 1 user (có cache, TTL qua filter).
+ *
+ * @param array $args {
+ *   @type int    $number      Số comment.
+ *   @type int    $paged       Trang hiện tại.
+ *   @type int    $user_id     ID user (ưu tiên nếu >0).
+ *   @type string $user_email  Email user (fallback nếu không có user_id).
+ * }
+ * @return array Array of WP_Comment objects.
+ */
+function init_plugin_suite_recent_comments_get_user_comments( $args = [] ) {
+	$defaults = [
+		'number'     => 5,
+		'paged'      => 1,
+		'status'     => 'approve',
+		'type'       => 'comment',
+		'user_id'    => 0,
+		'user_email' => '',
+	];
+
+	$args = wp_parse_args( $args, $defaults );
+
+	// Chuẩn hoá & bổ sung constraint user vào query gốc của IRC
+	$query_args = [
+		'number' => absint( $args['number'] ),
+		'status' => $args['status'],
+		'type'   => $args['type'],
+	];
+
+	// Áp offset (get_comments không hỗ trợ 'paged')
+	$query_args['offset'] = ( max( 1, absint( $args['paged'] ) ) - 1 ) * max( 1, absint( $args['number'] ) );
+
+	if ( $args['user_id'] > 0 ) {
+		$query_args['user_id'] = (int) $args['user_id']; // comment của user đã đăng ký
+	} elseif ( $args['user_email'] !== '' ) {
+		$query_args['author_email'] = sanitize_email( $args['user_email'] ); // comment guest theo email
+	}
+
+	/**
+	 * Allow devs tùy biến query cho user recent comments.
+	 *
+	 * Ví dụ: add_filter( 'init_plugin_suite_user_recent_comments_query_args', function( $qa ){ ... } );
+	 */
+	$query_args = apply_filters( 'init_plugin_suite_user_recent_comments_query_args', $query_args, $args );
+
+	// Cache (key gồm cả định danh user)
+	$cache_group = 'init_user_recent_comments';
+	$cache_key   = 'iurc_' . md5( maybe_serialize( $query_args ) );
+
+	// TTL mặc định = 0 (tắt), bật qua filter nếu muốn
+	$ttl = (int) apply_filters( 'init_plugin_suite_user_recent_comments_ttl', 0, $query_args, $args );
+
+	if ( $ttl > 0 ) {
+		$cached = wp_cache_get( $cache_key, $cache_group );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+	}
+
+	$comments = get_comments( $query_args );
+
+	if ( $ttl > 0 ) {
+		wp_cache_set( $cache_key, $comments, $cache_group, $ttl );
+	}
+
+	return $comments;
+}
+
+/**
  * Get recent reviews with optional cache (TTL filter).
  *
  * @param int $post_id ID bài viết (0 = global reviews).
@@ -82,6 +151,61 @@ function init_plugin_suite_recent_comments_get_reviews( $post_id = 0, $paged = 1
 
 	if ( $ttl > 0 ) {
 		wp_cache_set( $cache_key, $reviews, $cache_group, absint( $ttl ) );
+	}
+
+	return $reviews;
+}
+
+/**
+ * Helper: lấy recent reviews theo user (ARRAY_A), có cache.
+ *
+ * @param array $args {
+ *   @type int    $user_id
+ *   @type int    $paged
+ *   @type int    $per_page  0 = lấy toàn bộ
+ *   @type string $status    'approved' | 'pending' | ...
+ * }
+ * @return array
+ */
+function init_plugin_suite_recent_comments_get_user_reviews( $args = [] ) {
+	$defaults = [
+		'user_id'  => 0,
+		'paged'    => 1,
+		'per_page' => 5,
+		'status'   => 'approved',
+	];
+	$args = wp_parse_args( $args, $defaults );
+
+	// Cho phép dev override args nếu cần
+	$args = apply_filters( 'init_plugin_suite_user_recent_reviews_args', $args );
+
+	$cache_group = 'init_user_recent_reviews';
+	$cache_key   = 'iurr_' . md5( maybe_serialize( $args ) );
+
+	// TTL mặc định 0 (off) – có thể bật qua filter
+	$ttl = (int) apply_filters( 'init_plugin_suite_user_recent_reviews_ttl', 0, $args );
+
+	if ( $ttl > 0 ) {
+		$cached = wp_cache_get( $cache_key, $cache_group );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+	}
+
+	// Yêu cầu plugin Review System có sẵn hàm lấy theo user_id
+	if ( ! function_exists( 'init_plugin_suite_review_system_get_reviews_by_user_id' ) ) {
+		return [];
+	}
+
+	$reviews = init_plugin_suite_review_system_get_reviews_by_user_id(
+		absint( $args['user_id'] ),
+		max( 1, absint( $args['paged'] ) ),
+		max( 0, absint( $args['per_page'] ) ),
+		sanitize_key( $args['status'] )
+	);
+
+	if ( $ttl > 0 ) {
+		wp_cache_set( $cache_key, $reviews, $cache_group, $ttl );
 	}
 
 	return $reviews;
