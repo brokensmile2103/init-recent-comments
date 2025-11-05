@@ -3,7 +3,7 @@
 
 **No widgets. No jQuery. No bloat — just clean, templated output.**
 
-[![Version](https://img.shields.io/badge/stable-v1.3-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
+[![Version](https://img.shields.io/badge/stable-v1.4-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![Made with ❤️ in HCMC](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20in%20HCMC-blue)
 
