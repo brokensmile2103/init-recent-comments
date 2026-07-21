@@ -12,7 +12,7 @@ $author       	= get_comment_author( $comment );
 $post_title   	= get_the_title( $comment->comment_post_ID );
 $avatar       	= get_avatar_url( $comment, [ 'size' => 42 ] );
 $time_diff 	  	= is_a( $comment, 'WP_Comment' )
-			    	? human_time_diff( get_comment_time( 'U', true, false, $comment ), current_time( 'timestamp' ) )
+			    	? human_time_diff( get_comment_time( 'U', false, false, $comment ), current_time( 'timestamp' ) )
 			    	: '';
 
 $parent_author 	= '';

@@ -88,10 +88,6 @@ function init_plugin_suite_recent_comments_render_static( $atts = [], $filter_ta
 
 	ob_start();
 
-	// Biến cho template
-	$irc_container_class = $container_class;
-	$irc_paged           = $atts['paged'] !== '' ? $paged : false;
-
 	$template = locate_template( 'init-recent-comments/wrapper.php' );
 	if ( ! $template ) {
 		$template = INIT_PLUGIN_SUITE_IRC_TEMPLATES_PATH . 'wrapper.php';
@@ -216,10 +212,6 @@ function init_plugin_suite_recent_comments_render_user( $atts = [], $filter_tag 
 	}
 
 	ob_start();
-
-	// Biến cho template (tái sử dụng wrapper.php của init_recent_comments)
-	$irc_container_class = $container_class;
-	$irc_paged           = $atts['paged'] !== '' ? $paged : false;
 
 	$template = locate_template( 'init-recent-comments/wrapper.php' );
 	if ( ! $template ) {

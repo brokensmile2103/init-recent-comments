@@ -15,14 +15,14 @@
 
         var buttons = [
             // Recent Comments
-            { shortcode: 'init_recent_comments',  label: 'Recent Comments',  attributes: baseAttrs },
+            { shortcode: 'init_plugin_suite_recent_comments',  label: 'Recent Comments',  attributes: baseAttrs },
 
             // Recent Reviews
-            { shortcode: 'init_recent_reviews',   label: 'Recent Reviews',   attributes: baseAttrs },
+            { shortcode: 'init_plugin_suite_recent_reviews',   label: 'Recent Reviews',   attributes: baseAttrs },
 
             // User Recent Comments (user_id / login / email)
             {
-                shortcode: 'init_user_recent_comments',
+                shortcode: 'init_plugin_suite_user_recent_comments',
                 label: 'User Recent Comments',
                 attributes: Object.assign({
                     user_id:   { label: 'User ID', type: 'number', default: '' },
@@ -33,7 +33,7 @@
 
             // User Recent Reviews
             {
-                shortcode: 'init_user_recent_reviews',
+                shortcode: 'init_plugin_suite_user_recent_reviews',
                 label: 'User Recent Reviews',
                 attributes: Object.assign({
                     user_id: { label: 'User ID', type: 'number', default: '' }

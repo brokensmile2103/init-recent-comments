@@ -2,9 +2,9 @@
 Contributors: brokensmile.2103
 Tags: comments, recent comments, widget, shortcode, template
 Requires at least: 5.5  
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,10 @@ GitHub repository: [https://github.com/brokensmile2103/init-recent-comments](htt
 
 == Features ==
 
-- Simple shortcode: `[init_recent_comments]`
+- Simple shortcode: `[init_plugin_suite_recent_comments]` (legacy alias: `[init_recent_comments]`)
+- Shortcode for displaying recent reviews: `[init_plugin_suite_recent_reviews]` (legacy alias: `[init_recent_reviews]`)
+- Shortcode for displaying recent comments of a specific user: `[init_plugin_suite_user_recent_comments]` (legacy alias: `[init_user_recent_comments]`)
+- Shortcode for displaying recent reviews of a specific user: `[init_plugin_suite_user_recent_reviews]` (legacy alias: `[init_user_recent_reviews]`)
 - Template-based rendering (`comment-item.php`, `wrapper.php`)
 - CSS can be disabled to use your theme's design
 - No widgets, no jQuery, no frontend bloat
@@ -42,54 +45,85 @@ GitHub repository: [https://github.com/brokensmile2103/init-recent-comments](htt
 
 Use the shortcode anywhere:
 
-`[init_recent_comments number="5" maxheight="400px"]`
+`[init_plugin_suite_recent_comments number="5" maxheight="400px"]`
+
+Recent reviews:
+
+`[init_plugin_suite_recent_reviews number="5"]`
+
+Recent comments of a specific user:
+
+`[init_plugin_suite_user_recent_comments user_id="123"]`
+
+Recent reviews of a specific user:
+
+`[init_plugin_suite_user_recent_reviews user_id="123"]`
+
+The legacy tags `[init_recent_comments]`, `[init_recent_reviews]`, `[init_user_recent_comments]`, and `[init_user_recent_reviews]` still work exactly the same way, for backward compatibility with existing content.
 
 Attributes:
 
-- `number` – Total comments to show (default: 5)
+- `number` – Total items to show (default: 5)
 - `maxheight` – Optional max height with scroll and hidden scrollbar (example: `300px`)
+- `paged` – Optional pagination
+- `theme` – Light or dark (example: `theme="dark"`)
+- For user shortcodes: `user_id`, `user_login`, or `user_email` can be used to target the user
 
 To override templates, create the folder in your theme:
 
     your-theme/
     └── init-recent-comments/
         ├── wrapper.php
-        └── comment-item.php
+        ├── review-wrapper.php
+        ├── comment-item.php
+        └── review-item.php
 
 == Filters for Developers ==
 
 This plugin provides multiple filters to help developers customize caching behavior and performance for recent comments, reviews, and total comment count queries.
 
-**`init_plugin_suite_recent_comments_ttl`**  
+**By default, comment/review queries are NOT cached (TTL = 0)** so newly posted comments always show up immediately — this is intentional, since most sites using this plugin expect real-time freshness. If your site has heavy traffic and you're fine with a short delay before new comments appear, you can enable caching yourself using the filters below (a value like `60` for 60 seconds is a reasonable starting point). Total comment count queries default to a 5-minute TTL instead, since counts are less time-sensitive.
+
+`init_plugin_suite_recent_comments_ttl`  
 Control the cache TTL (in seconds) for recent comments.  
-**Applies to:** Recent Comments Query  
-**Params:** `int $ttl`
+Applies to: Recent Comments Query  
+Params: `int $ttl`
 
-**`init_plugin_suite_recent_comments_query_args`**  
+`init_plugin_suite_recent_comments_query_args`  
 Allows developers to modify or extend the WP_Comment query arguments before the query runs.  
-**Applies to:** Recent Comments Query  
-**Params:** `array $args`
+Applies to: Recent Comments Query  
+Params: `array $args`
 
-**`init_plugin_suite_recent_reviews_ttl`**  
+`init_plugin_suite_recent_reviews_ttl`  
 Control the cache TTL (in seconds) for recent reviews.  
-**Applies to:** Recent Reviews Query  
-**Params:** `int $ttl`
+Applies to: Recent Reviews Query  
+Params: `int $ttl`
 
-**`init_plugin_suite_total_comments_ttl`**  
+`init_plugin_suite_user_recent_comments_ttl`  
+Control cache TTL (in seconds) for recent comments by a specific user.  
+Applies to: `[init_user_recent_comments]`  
+Params: `int $ttl`, `array $args`
+
+`init_plugin_suite_user_recent_reviews_ttl`  
+Control cache TTL (in seconds) for recent reviews by a specific user.  
+Applies to: `[init_user_recent_reviews]`  
+Params: `int $ttl`, `array $args`
+
+`init_plugin_suite_total_comments_ttl`  
 Control the cache TTL (in seconds) for total approved comment counts by post type.  
-**Applies to:** Total Comments Query  
-**Params:** `int $ttl`, `array $post_types`
+Applies to: Total Comments Query  
+Params: `int $ttl`, `array $post_types`
 
-**`init_plugin_suite_total_by_posts_ttl`**  
+`init_plugin_suite_total_by_posts_ttl`  
 Control the cache TTL (in seconds) for total approved comment counts across multiple post IDs.  
-**Applies to:** Total by Post IDs Query  
-**Params:** `int $ttl`, `array $post_ids`
+Applies to: Total by Post IDs Query  
+Params: `int $ttl`, `array $post_ids`
 
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate via **Plugins → Init Recent Comments**
-3. Use the shortcode `[init_recent_comments]` in any page or widget
+3. Use the shortcode `[init_plugin_suite_recent_comments]` in any page or widget
 4. Optional: Visit **Settings → Init Recent Comments** to disable built-in CSS
 
 == Screenshots ==
@@ -108,6 +142,13 @@ Absolutely. Copy `templates/comment-item.php` and `templates/wrapper.php` to you
 No. It uses `get_comments()` with sane defaults, no extra queries, no JavaScript.
 
 == Changelog ==
+
+= 1.5 – July 21, 2026 =
+- Shortcode Builder in the admin settings page now generates the prefixed shortcodes (`[init_plugin_suite_recent_comments]`, `[init_plugin_suite_recent_reviews]`, `[init_plugin_suite_user_recent_comments]`, `[init_plugin_suite_user_recent_reviews]`) by default; legacy tags remain fully supported
+- Updated documentation to use the prefixed shortcodes as the primary examples, with legacy tags noted as backward-compatible aliases
+- Uninstall routine now reliably removes the plugin's settings option
+- Documented the default caching behavior (TTL = 0 for comments/reviews) in the Filters for Developers section
+- Internal code cleanup for readability and maintainability
 
 = 1.4 – November 5, 2025 =
 - Introduced new user-specific shortcodes:
