@@ -1,23 +1,31 @@
 # Init Recent Comments – Templated, Modern, Minimal
 
-> Display recent comments using clean templates and minimal CSS. Developer-friendly, fast, and built for modern WordPress.
+> Display recent comments using clean templates and minimal CSS, with Block Editor & Abilities API support. Developer-friendly, fast, and built for modern WordPress.
 
 **No widgets. No jQuery. No bloat — just clean, templated output.**
 
-[![Version](https://img.shields.io/badge/stable-v1.5-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
+[![Version](https://img.shields.io/badge/stable-v2.0.0-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![Made with ❤️ in HCMC](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20in%20HCMC-blue)
 
 ## Overview
 
-**Init Recent Comments** is a lightweight, developer-oriented plugin that displays the latest comments (and reviews) anywhere on your site through a simple shortcode.
+**Init Recent Comments** is a lightweight, developer-oriented plugin that displays the latest comments (and reviews) anywhere on your site — through a simple shortcode, or natively as a Block Editor block.
 
 Built with flexibility and simplicity in mind — clean markup, minimal CSS, and template overrides directly from your theme.
 
 Ideal for blogs, news sites, or any project that values both performance and clean design.
 
+## What's New in v2.0.0
+
+- **Block Editor (Gutenberg) support**: four dynamic blocks — Recent Comments, Recent Reviews, User Recent Comments, User Recent Reviews — grouped under their own **Init Recent Comments** category in the block inserter. Each block is registered via `block.json` with a PHP `render.php` that calls the exact same shortcode function as its shortcode counterpart, so output never diverges. A single no-build-step vanilla JS file powers the editor integration, with `wp.serverSideRender` for live preview
+- **Abilities API support (WordPress 6.9+)**: registers four read-only abilities — `get-recent-comments`, `get-recent-reviews`, `get-user-recent-comments`, `get-user-recent-reviews` — mapping 1:1 to all four shortcodes. This plugin has no write actions at all (it's a pure display plugin), so all of its functionality is safely exposed. Discoverable and executable via PHP, `wp_get_abilities()`, and the `wp-abilities/v1` REST namespace when a site opts in. Review-related abilities gracefully return an empty list if Init Review System isn't active. Fully optional: on WordPress versions older than 6.9, this silently does nothing
+- **Requires at least** raised from 5.5 to 6.9 to support the Abilities API. `Requires PHP` stays at 7.4
+
 ## Features
 
+- Block Editor (Gutenberg) blocks: Recent Comments, Recent Reviews, User Recent Comments, User Recent Reviews — each with a live server-side preview in the editor
+- Abilities API (WordPress 6.9+): all 4 shortcodes' data exposed as discoverable, executable abilities
 - Shortcode: `[init_plugin_suite_recent_comments]` (legacy alias: `[init_recent_comments]`)
 - Shortcode for recent reviews: `[init_plugin_suite_recent_reviews]` (legacy alias: `[init_recent_reviews]`)
 - Shortcode for a specific user's recent comments: `[init_plugin_suite_user_recent_comments]` (legacy alias: `[init_user_recent_comments]`)
@@ -28,7 +36,33 @@ Ideal for blogs, news sites, or any project that values both performance and cle
 - Developer-ready — filters, REST endpoints, and lazy loading (planned)
 - Translation-ready (`.pot` file included)
 
+## Block Editor (Gutenberg)
+
+Four dynamic blocks are available under their own **Init Recent Comments** category in the block inserter — no shortcodes needed if you prefer working entirely in the editor:
+
+| Block | Equivalent shortcode |
+|---|---|
+| **Recent Comments** | `[init_plugin_suite_recent_comments]` |
+| **Recent Reviews** | `[init_plugin_suite_recent_reviews]` |
+| **User Recent Comments** | `[init_plugin_suite_user_recent_comments]` |
+| **User Recent Reviews** | `[init_plugin_suite_user_recent_reviews]` |
+
+Each block shares the exact same rendering code as its shortcode, so switching between the Block Editor and shortcodes never changes the output. Block settings map directly to shortcode attributes, and a live preview is shown right in the editor as you configure it.
+
+## Abilities API (WordPress 6.9+)
+
+On WordPress 6.9 and above, Init Recent Comments registers four read-only abilities under the `init-recent-comments` category, mirroring the plugin's four shortcodes exactly:
+
+- `init-recent-comments/get-recent-comments` — most recent approved comments site-wide
+- `init-recent-comments/get-recent-reviews` — most recent approved reviews site-wide (requires Init Review System)
+- `init-recent-comments/get-user-recent-comments` — most recent approved comments by a specific user
+- `init-recent-comments/get-user-recent-reviews` — most recent reviews submitted by a specific user (requires Init Review System)
+
+This plugin has no write actions at all — it's a pure display plugin — so all of its functionality can be safely exposed without exclusions. These abilities are discoverable and executable via PHP (`wp_get_abilities()`), and — for sites that opt in — the `wp-abilities/v1` REST namespace. This integration is fully optional: on WordPress versions older than 6.9, it silently does nothing.
+
 ## Usage
+
+Prefer working in the Block Editor? Each shortcode below has an equivalent block — see [Block Editor (Gutenberg)](#block-editor-gutenberg) above.
 
 Use the shortcode anywhere:
 
@@ -97,8 +131,13 @@ By default, comment and review queries are **not cached** (TTL = 0) so newly pos
 
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate it under **Plugins → Init Recent Comments**
-3. Insert `[init_plugin_suite_recent_comments]` in any page, post, or widget
+3. Insert `[init_plugin_suite_recent_comments]` in any page, post, or widget — or add the equivalent block in the Block Editor
 4. (Optional) Disable built-in CSS via **Settings → Init Recent Comments**
+
+## Requirements
+
+- WordPress 6.9 or later (raised from 5.5 in v2.0.0, to support the Abilities API integration)
+- PHP 7.4 or later
 
 ## License
 
