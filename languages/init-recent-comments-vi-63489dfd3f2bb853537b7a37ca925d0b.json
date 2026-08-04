@@ -1,0 +1,63 @@
+{
+  "translation-revision-date": "2026-08-04 00:00+0000",
+  "generator": "manual/claude",
+  "source": "assets/js/blocks-editor.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "vi",
+        "plural-forms": "nplurals=1; plural=0;"
+      },
+      "Dark": [
+        "Tối"
+      ],
+      "Default": [
+        "Mặc định"
+      ],
+      "Email (used if User ID and Username are empty)": [
+        "Email (dùng nếu ID user và tên đăng nhập đều trống)"
+      ],
+      "Max Height (e.g. 300px)": [
+        "Chiều cao tối đa (vd: 300px)"
+      ],
+      "Number of Comments": [
+        "Số lượng bình luận"
+      ],
+      "Number of Reviews": [
+        "Số lượng review"
+      ],
+      "Page Number (0 = first page)": [
+        "Số trang (0 = trang đầu)"
+      ],
+      "Recent Comments Settings": [
+        "Cài đặt Bình luận gần đây"
+      ],
+      "Recent Reviews Settings": [
+        "Cài đặt Review gần đây"
+      ],
+      "Status": [
+        "Trạng thái"
+      ],
+      "Theme": [
+        "Giao diện"
+      ],
+      "User ID": [
+        "ID user"
+      ],
+      "User Recent Comments Settings": [
+        "Cài đặt Bình luận gần đây của user"
+      ],
+      "User Recent Reviews Settings": [
+        "Cài đặt Review gần đây của user"
+      ],
+      "Username (used if User ID is 0)": [
+        "Tên đăng nhập (dùng nếu ID user là 0)"
+      ],
+      "e.g. approved, pending": [
+        "vd: approved, pending"
+      ]
+    }
+  }
+}

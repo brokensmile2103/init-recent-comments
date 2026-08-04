@@ -58,3 +58,173 @@ msgstr "Giao diện"
 
 msgid "Replying to"
 msgstr "Trả lời"
+
+
+msgid "Abilities exposed by the Init Recent Comments plugin."
+msgstr "Các ability được plugin Init Recent Comments cung cấp."
+
+msgid "Get Recent Comments"
+msgstr "Lấy bình luận gần đây"
+
+msgid "Returns the most recent approved comments site-wide, the same data shown by the [init_recent_comments] shortcode."
+msgstr "Trả về các bình luận đã duyệt gần đây nhất trên toàn site — cùng dữ liệu hiển thị bởi shortcode [init_recent_comments]."
+
+msgid "Number of comments to return."
+msgstr "Số lượng bình luận cần trả về."
+
+msgid "Page number."
+msgstr "Số trang."
+
+msgid "Get Recent Reviews"
+msgstr "Lấy review gần đây"
+
+msgid "Returns the most recent approved reviews site-wide, the same data shown by the [init_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
+msgstr "Trả về các review đã duyệt gần đây nhất trên toàn site — cùng dữ liệu hiển thị bởi shortcode [init_recent_reviews]. Cần plugin Init Review System đang hoạt động; nếu không sẽ trả về danh sách rỗng."
+
+msgid "Number of reviews to return."
+msgstr "Số lượng review cần trả về."
+
+msgid "Get User Recent Comments"
+msgstr "Lấy bình luận gần đây của user"
+
+msgid "Returns the most recent approved comments by a specific user, the same data shown by the [init_user_recent_comments] shortcode."
+msgstr "Trả về các bình luận đã duyệt gần đây nhất của một user cụ thể — cùng dữ liệu hiển thị bởi shortcode [init_user_recent_comments]."
+
+msgid "Registered user ID. Takes priority over user_login/user_email."
+msgstr "ID user đã đăng ký. Ưu tiên hơn user_login/user_email."
+
+msgid "Username. Used if user_id is not provided."
+msgstr "Tên đăng nhập. Dùng nếu không cung cấp user_id."
+
+msgid "Email address, for matching guest comments. Used if neither user_id nor user_login is provided."
+msgstr "Địa chỉ email, dùng để khớp bình luận của khách. Dùng nếu không có cả user_id lẫn user_login."
+
+msgid "One of user_id, user_login, or user_email is required."
+msgstr "Cần cung cấp ít nhất một trong user_id, user_login, hoặc user_email."
+
+msgid "Get User Recent Reviews"
+msgstr "Lấy review gần đây của user"
+
+msgid "Returns the most recent reviews submitted by a specific user, the same data shown by the [init_user_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
+msgstr "Trả về các review gần đây nhất do một user cụ thể gửi — cùng dữ liệu hiển thị bởi shortcode [init_user_recent_reviews]. Cần plugin Init Review System đang hoạt động; nếu không sẽ trả về danh sách rỗng."
+
+msgid "Registered user ID."
+msgstr "ID user đã đăng ký."
+
+msgid "Review moderation status."
+msgstr "Trạng thái kiểm duyệt review."
+
+msgid "A valid user_id is required."
+msgstr "Cần một user_id hợp lệ."
+
+msgid "Anonymous"
+msgstr "Ẩn danh"
+
+msgid "Recent Comments Settings"
+msgstr "Cài đặt Bình luận gần đây"
+
+msgid "Page Number (0 = first page)"
+msgstr "Số trang (0 = trang đầu)"
+
+msgid "Recent Reviews Settings"
+msgstr "Cài đặt Review gần đây"
+
+msgid "Number of Reviews"
+msgstr "Số lượng review"
+
+msgid "User Recent Comments Settings"
+msgstr "Cài đặt Bình luận gần đây của user"
+
+msgid "User ID"
+msgstr "ID user"
+
+msgid "Username (used if User ID is 0)"
+msgstr "Tên đăng nhập (dùng nếu ID user là 0)"
+
+msgid "Email (used if User ID and Username are empty)"
+msgstr "Email (dùng nếu ID user và tên đăng nhập đều trống)"
+
+msgid "User Recent Reviews Settings"
+msgstr "Cài đặt Review gần đây của user"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "e.g. approved, pending"
+msgstr "vd: approved, pending"
+
+msgid "Default"
+msgstr "Mặc định"
+
+msgid "Dark"
+msgstr "Tối"
+
+#: blocks/recent-comments/block.json
+msgctxt "block title"
+msgid "Recent Comments"
+msgstr "Bình luận gần đây"
+
+#: blocks/recent-comments/block.json
+msgctxt "block description"
+msgid "Insert the most recent approved comments site-wide."
+msgstr "Chèn các bình luận đã duyệt gần đây nhất trên toàn site."
+
+#: blocks/recent-comments/block.json blocks/user-recent-comments/block.json
+msgctxt "block keyword"
+msgid "comments"
+msgstr "bình luận"
+
+#: blocks/recent-comments/block.json blocks/recent-reviews/block.json
+msgctxt "block keyword"
+msgid "recent"
+msgstr "gần đây"
+
+#: blocks/recent-comments/block.json blocks/recent-reviews/block.json blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+msgctxt "block keyword"
+msgid "init"
+msgstr "init"
+
+#: blocks/recent-reviews/block.json
+msgctxt "block title"
+msgid "Recent Reviews"
+msgstr "Review gần đây"
+
+#: blocks/recent-reviews/block.json
+msgctxt "block description"
+msgid "Insert the most recent approved reviews site-wide. Requires Init Review System."
+msgstr "Chèn các review đã duyệt gần đây nhất trên toàn site. Cần plugin Init Review System."
+
+#: blocks/recent-reviews/block.json blocks/user-recent-reviews/block.json
+msgctxt "block keyword"
+msgid "reviews"
+msgstr "review"
+
+#: blocks/user-recent-comments/block.json
+msgctxt "block title"
+msgid "User Recent Comments"
+msgstr "Bình luận gần đây của user"
+
+#: blocks/user-recent-comments/block.json
+msgctxt "block description"
+msgid "Insert the most recent approved comments by a specific user."
+msgstr "Chèn các bình luận đã duyệt gần đây nhất của một user cụ thể."
+
+#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+msgctxt "block keyword"
+msgid "user"
+msgstr "user"
+
+#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+msgctxt "block keyword"
+msgid "author"
+msgstr "tác giả"
+
+#: blocks/user-recent-reviews/block.json
+msgctxt "block title"
+msgid "User Recent Reviews"
+msgstr "Review gần đây của user"
+
+#: blocks/user-recent-reviews/block.json
+msgctxt "block description"
+msgid "Insert the most recent reviews submitted by a specific user. Requires Init Review System."
+msgstr "Chèn các review gần đây nhất do một user cụ thể gửi. Cần plugin Init Review System."

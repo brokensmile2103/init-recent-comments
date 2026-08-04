@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "init-recent-comments/user-recent-comments",
+    "title": "User Recent Comments",
+    "category": "init-recent-comments",
+    "icon": "admin-users",
+    "description": "Insert the most recent approved comments by a specific user.",
+    "keywords": ["comments", "user", "author", "init"],
+    "textdomain": "init-recent-comments",
+    "attributes": {
+        "userId": {
+            "type": "number",
+            "default": 0
+        },
+        "userLogin": {
+            "type": "string",
+            "default": ""
+        },
+        "userEmail": {
+            "type": "string",
+            "default": ""
+        },
+        "number": {
+            "type": "number",
+            "default": 5
+        },
+        "maxHeight": {
+            "type": "string",
+            "default": ""
+        },
+        "theme": {
+            "type": "string",
+            "default": ""
+        },
+        "paged": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "supports": {
+        "html": false,
+        "className": false,
+        "customClassName": false
+    },
+    "editorScript": "init-recent-comments-blocks-editor",
+    "style": "init-recent-comments-style",
+    "render": "file:./render.php"
+}

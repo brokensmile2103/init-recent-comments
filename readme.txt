@@ -1,23 +1,25 @@
 === Init Recent Comments – Templated, Modern, Minimal ===
 Contributors: brokensmile.2103
 Tags: comments, recent comments, widget, shortcode, template
-Requires at least: 5.5  
-Tested up to: 7.0
+Requires at least: 6.9  
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
+Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS.
 
 == Description ==
 
 **Init Recent Comments** is a developer-friendly plugin that lets you display the latest comments anywhere via a simple shortcode. It uses clean HTML, minimal CSS, and fully customizable templates.
 
-No widgets, no bloated options. Just lightweight, extendable code — made for real sites.
+No widgets, no bloated options. Just lightweight, extendable code — made for real sites, with native Block Editor support and Abilities API integration for the next generation of automation tools.
 
 Key design goals:
 
+- Native Block Editor blocks, one per shortcode, with live preview
+- Abilities API support (WordPress 6.9+) for AI agents and automation tools
 - Templated rendering with override support from themes
 - Clean CSS you can disable or replace
 - REST-ready architecture (future-proof)
@@ -31,6 +33,8 @@ GitHub repository: [https://github.com/brokensmile2103/init-recent-comments](htt
 
 == Features ==
 
+- Block Editor (Gutenberg) blocks: Recent Comments, Recent Reviews, User Recent Comments, User Recent Reviews — each with a live server-side preview in the editor
+- Abilities API (WordPress 6.9+): all 4 shortcodes' data exposed as discoverable, executable abilities via `wp_get_abilities()` and the `wp-abilities/v1` REST namespace
 - Simple shortcode: `[init_plugin_suite_recent_comments]` (legacy alias: `[init_recent_comments]`)
 - Shortcode for displaying recent reviews: `[init_plugin_suite_recent_reviews]` (legacy alias: `[init_recent_reviews]`)
 - Shortcode for displaying recent comments of a specific user: `[init_plugin_suite_user_recent_comments]` (legacy alias: `[init_user_recent_comments]`)
@@ -41,7 +45,24 @@ GitHub repository: [https://github.com/brokensmile2103/init-recent-comments](htt
 - Developer-ready: extend with filters, REST, and lazy loading (planned)
 - Translation-ready (`.pot` included)
 
+== Block Editor (Gutenberg) ==
+
+Four dynamic blocks are available under their own **Init Recent Comments** category in the block inserter — no shortcodes needed if you prefer working entirely in the editor:
+
+- **Recent Comments** — equivalent to `[init_plugin_suite_recent_comments]`
+- **Recent Reviews** — equivalent to `[init_plugin_suite_recent_reviews]`
+- **User Recent Comments** — equivalent to `[init_plugin_suite_user_recent_comments]`
+- **User Recent Reviews** — equivalent to `[init_plugin_suite_user_recent_reviews]`
+
+Each block shares the exact same rendering code as its shortcode, so switching between the Block Editor and shortcodes never changes the output. Block settings map directly to shortcode attributes, and a live preview is shown right in the editor as you configure it.
+
+== Abilities API (WordPress 6.9+) ==
+
+On WordPress 6.9 and above, Init Recent Comments registers four read-only abilities under the `init-recent-comments` category — `get-recent-comments`, `get-recent-reviews`, `get-user-recent-comments`, and `get-user-recent-reviews` — mirroring the plugin's four shortcodes exactly. This plugin has no write actions at all (it's a pure display plugin), so all of its functionality is safely exposed. These abilities are discoverable and executable via PHP (`wp_get_abilities()`), and — for sites that opt in — the `wp-abilities/v1` REST namespace. This integration is fully optional: on WordPress versions older than 6.9, it silently does nothing and the rest of the plugin is unaffected.
+
 == Usage ==
+
+Prefer working in the Block Editor? Each shortcode below has an equivalent block — see the "Block Editor (Gutenberg)" section above.
 
 Use the shortcode anywhere:
 
@@ -142,6 +163,12 @@ Absolutely. Copy `templates/comment-item.php` and `templates/wrapper.php` to you
 No. It uses `get_comments()` with sane defaults, no extra queries, no JavaScript.
 
 == Changelog ==
+
+= 2.0.0 – August 4, 2026 =
+- **New: Abilities API support (WordPress 6.9+)**: registers four read-only abilities under the `init-recent-comments` category — `get-recent-comments`, `get-recent-reviews`, `get-user-recent-comments`, and `get-user-recent-reviews` — mirroring all four shortcodes exactly. This plugin has no write actions, so all of its data is safely exposed. Discoverable and executable via PHP, `wp_get_abilities()`, and — when a site opts in — the `wp-abilities/v1` REST namespace. Fully optional and backward-compatible: on WordPress versions older than 6.9, the integration silently does nothing
+- **New: Block Editor (Gutenberg) support**: four dynamic blocks, grouped under their own **Init Recent Comments** block category (instead of the generic "Widgets" category) — **Recent Comments**, **Recent Reviews**, **User Recent Comments**, and **User Recent Reviews**, matching the four existing shortcodes. Each block is registered via `block.json` (with a PHP `render.php` file wired through the `"render"` field, WP 6.1+) that calls the exact same shortcode function as its shortcode counterpart — no duplicated display logic, output always matches. The editor integration is a single, no-build-step vanilla JavaScript file using `wp.serverSideRender` for a live preview directly in the editor
+- **Changed**: `Requires at least` raised from 5.5 to 6.9 to support the Abilities API integration. `Requires PHP` remains 7.4
+- **Tested up to: 7.1**
 
 = 1.5 – July 21, 2026 =
 - Shortcode Builder in the admin settings page now generates the prefixed shortcodes (`[init_plugin_suite_recent_comments]`, `[init_plugin_suite_recent_reviews]`, `[init_plugin_suite_user_recent_comments]`, `[init_plugin_suite_user_recent_reviews]`) by default; legacy tags remain fully supported

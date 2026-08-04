@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Init Recent Comments
  * Plugin URI: https://inithtml.com/plugin/init-recent-comments/
- * Description: Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
- * Version: 1.5
+ * Description: Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
+ * Version: 2.0.0
  * Author: Init HTML
  * Author URI: https://inithtml.com/
  * Text Domain: init-recent-comments
  * Domain Path: /languages
- * Requires at least: 5.5
- * Tested up to: 7.0
+ * Requires at least: 6.9
+ * Tested up to: 7.1
  * Requires PHP: 7.4
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@
 defined('ABSPATH') || exit;
 
 // ===== CONSTANTS ===== //
-define( 'INIT_PLUGIN_SUITE_IRC_VERSION',        '1.5' );
+define( 'INIT_PLUGIN_SUITE_IRC_VERSION',        '2.0.0' );
 define( 'INIT_PLUGIN_SUITE_IRC_SLUG',           'init-recent-comments' );
 define( 'INIT_PLUGIN_SUITE_IRC_OPTION',         'init_plugin_suite_init_recent_comments_settings' );
 define( 'INIT_PLUGIN_SUITE_IRC_NAMESPACE',      'initreco/v1' );
@@ -52,3 +52,5 @@ function init_plugin_suite_recent_comments_enqueue_styles() {
 require_once INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH . 'comments-utils.php';
 require_once INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH . 'shortcodes.php';
 require_once INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH . 'settings-page.php';
+require_once INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH . 'blocks.php';
+require_once INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH . 'abilities-api.php';
