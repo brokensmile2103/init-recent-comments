@@ -1,18 +1,25 @@
 <?php
-// Dynamic render cho block init-recent-comments/recent-comments.
-// $attributes, $content, $block được WordPress tự inject khi dùng "render" trong block.json.
+/**
+ * Dynamic render cho block init-recent-comments/recent-comments.
+ *
+ * $attributes, $content, $block được WordPress tự inject khi dùng "render"
+ * trong block.json (file được include bên trong scope của một hàm).
+ *
+ * @package InitRecentComments
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$atts = [
+$init_plugin_suite_irc_atts = array(
 	'number'    => isset( $attributes['number'] ) ? (string) absint( $attributes['number'] ) : '5',
 	'maxheight' => isset( $attributes['maxHeight'] ) ? (string) $attributes['maxHeight'] : '',
 	'theme'     => isset( $attributes['theme'] ) ? (string) $attributes['theme'] : '',
-];
+);
 
 if ( ! empty( $attributes['paged'] ) ) {
-	$atts['paged'] = (string) absint( $attributes['paged'] );
+	$init_plugin_suite_irc_atts['paged'] = (string) absint( $attributes['paged'] );
 }
 
 // init_plugin_suite_recent_comments_render_static__prefixed() renders the
@@ -20,4 +27,4 @@ if ( ! empty( $attributes['paged'] ) ) {
 // escapes everything internally (it includes wrapper.php, same as the
 // shortcode does) — no extra wrapper here.
 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-echo init_plugin_suite_recent_comments_render_static__prefixed( $atts );
+echo init_plugin_suite_recent_comments_render_static__prefixed( $init_plugin_suite_irc_atts );

@@ -4,7 +4,7 @@
 
 **No widgets. No jQuery. No bloat — just clean, templated output.**
 
-[![Version](https://img.shields.io/badge/stable-v2.0.0-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
+[![Version](https://img.shields.io/badge/stable-v2.0.1-blue.svg)](https://wordpress.org/plugins/init-recent-comments/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 ![Made with ❤️ in HCMC](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20in%20HCMC-blue)
 
@@ -15,6 +15,14 @@
 Built with flexibility and simplicity in mind — clean markup, minimal CSS, and template overrides directly from your theme.
 
 Ideal for blogs, news sites, or any project that values both performance and clean design.
+
+## What's New in v2.0.1
+
+- **Security**: recent comments only include comments on published posts (same rule as core's Recent Comments widget), and recent reviews skip reviews on posts that aren't publicly viewable — no more leaking private/draft post titles or content
+- **Security (Abilities API)**: looking up guest comments by email requires the `moderate_comments` capability; non-approved reviews require `manage_options`
+- **Fixes**: `maxheight` is now actually applied, "Disable built-in CSS" also covers blocks, review links are no longer double-escaped, "time ago" uses GMT, Shortcode Builder strings are translated
+- **Performance**: batched loading of posts/users/parent comments (≈6 queries instead of ≈33 for 10 comments), and TTL caches now auto-invalidate when data changes
+- **Code quality**: full WordPress Coding Standards (WPCS 3) compliance
 
 ## What's New in v2.0.0
 

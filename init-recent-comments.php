@@ -3,7 +3,7 @@
  * Plugin Name: Init Recent Comments
  * Plugin URI: https://inithtml.com/plugin/init-recent-comments/
  * Description: Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: Init HTML
  * Author URI: https://inithtml.com/
  * Text Domain: init-recent-comments
@@ -13,39 +13,56 @@
  * Requires PHP: 7.4
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @package InitRecentComments
  */
 
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 // ===== CONSTANTS ===== //
-define( 'INIT_PLUGIN_SUITE_IRC_VERSION',        '2.0.0' );
-define( 'INIT_PLUGIN_SUITE_IRC_SLUG',           'init-recent-comments' );
-define( 'INIT_PLUGIN_SUITE_IRC_OPTION',         'init_plugin_suite_init_recent_comments_settings' );
-define( 'INIT_PLUGIN_SUITE_IRC_NAMESPACE',      'initreco/v1' );
+define( 'INIT_PLUGIN_SUITE_IRC_VERSION', '2.0.1' );
+define( 'INIT_PLUGIN_SUITE_IRC_SLUG', 'init-recent-comments' );
+define( 'INIT_PLUGIN_SUITE_IRC_OPTION', 'init_plugin_suite_init_recent_comments_settings' );
+define( 'INIT_PLUGIN_SUITE_IRC_NAMESPACE', 'initreco/v1' );
 
-define( 'INIT_PLUGIN_SUITE_IRC_URL',            plugin_dir_url( __FILE__ ) );
-define( 'INIT_PLUGIN_SUITE_IRC_PATH',           plugin_dir_path( __FILE__ ) );
-define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_URL',     INIT_PLUGIN_SUITE_IRC_URL .  'assets/' );
-define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_PATH',    INIT_PLUGIN_SUITE_IRC_PATH . 'assets/' );
+define( 'INIT_PLUGIN_SUITE_IRC_URL', plugin_dir_url( __FILE__ ) );
+define( 'INIT_PLUGIN_SUITE_IRC_PATH', plugin_dir_path( __FILE__ ) );
+define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_URL', INIT_PLUGIN_SUITE_IRC_URL . 'assets/' );
+define( 'INIT_PLUGIN_SUITE_IRC_ASSETS_PATH', INIT_PLUGIN_SUITE_IRC_PATH . 'assets/' );
 define( 'INIT_PLUGIN_SUITE_IRC_TEMPLATES_PATH', INIT_PLUGIN_SUITE_IRC_PATH . 'templates/' );
-define( 'INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH',  INIT_PLUGIN_SUITE_IRC_PATH . 'includes/' );
+define( 'INIT_PLUGIN_SUITE_IRC_INCLUDES_PATH', INIT_PLUGIN_SUITE_IRC_PATH . 'includes/' );
 
 // ===== ENQUEUE DEFAULT CSS (CAN BE DISABLED) ===== //
 add_action( 'wp_enqueue_scripts', 'init_plugin_suite_recent_comments_enqueue_styles' );
+
+/**
+ * Enqueue CSS front-end mặc định (có thể tắt qua Settings hoặc filter).
+ *
+ * Khi CSS bị tắt, handle 'init-recent-comments-style' được đăng ký lại thành
+ * một handle rỗng (src = false). Nhờ vậy cơ chế "style" trong block.json của
+ * 4 block vẫn tìm thấy handle (không lỗi), nhưng KHÔNG nạp file CSS nào —
+ * tuỳ chọn "Disable built-in CSS" giờ áp dụng cho cả block lẫn shortcode.
+ *
+ * @return void
+ */
 function init_plugin_suite_recent_comments_enqueue_styles() {
 	$options     = get_option( INIT_PLUGIN_SUITE_IRC_OPTION );
-	$disable_css = isset( $options['disable_css'] ) && $options['disable_css'];
+	$disable_css = ! empty( $options['disable_css'] );
 
 	$disable_css = apply_filters( 'init_plugin_suite_recent_comments_disable_css', $disable_css );
 
-	if ( ! $disable_css ) {
-		wp_enqueue_style(
-			'init-recent-comments-style',
-			INIT_PLUGIN_SUITE_IRC_ASSETS_URL . 'css/style.css',
-			[],
-			INIT_PLUGIN_SUITE_IRC_VERSION
-		);
+	if ( $disable_css ) {
+		wp_deregister_style( 'init-recent-comments-style' );
+		wp_register_style( 'init-recent-comments-style', false, array(), INIT_PLUGIN_SUITE_IRC_VERSION );
+		return;
 	}
+
+	wp_enqueue_style(
+		'init-recent-comments-style',
+		INIT_PLUGIN_SUITE_IRC_ASSETS_URL . 'css/style.css',
+		array(),
+		INIT_PLUGIN_SUITE_IRC_VERSION
+	);
 }
 
 // ===== INCLUDE FUNCTIONALITY ===== //

@@ -1,161 +1,236 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Init Recent Comments\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/init-recent-comments\n"
+"Last-Translator: Init HTML\n"
+"Language-Team: Vietnamese\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-02T08:19:09+00:00\n"
+"PO-Revision-Date: 2026-10-02\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. Plugin Name of the plugin
+#: init-recent-comments.php
+#: includes/abilities-api.php:32
+#: includes/blocks.php:43
+#: includes/settings-page.php:88
+#: includes/shortcodes.php:404
 msgid "Init Recent Comments"
 msgstr "Init Recent Comments"
 
-msgid "Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
-msgstr "Hiển thị bình luận gần đây với mẫu tùy chỉnh và CSS gọn gàng. Nhẹ, linh hoạt và được xây dựng cho các trang WordPress hiện đại."
-
+#: templates/comment-item.php:58
+#: templates/review-item.php:79
 msgid "ago"
 msgstr "trước"
 
+#: templates/comment-item.php:63
+#: templates/review-item.php:85
 msgid "In"
 msgstr "Trong"
 
+#: includes/settings-page.php:31
 msgid "General Settings"
 msgstr "Cài đặt chung"
 
+#: includes/settings-page.php:38
 msgid "Disable built-in CSS"
 msgstr "Tắt CSS mặc định của plugin"
 
+#: includes/settings-page.php:72
 msgid "Use your own theme styling instead of the plugin’s CSS."
 msgstr "Sử dụng giao diện từ theme của bạn thay vì CSS sẵn có của plugin."
 
+#: includes/settings-page.php:87
+#: includes/settings-page.php:108
 msgid "Init Recent Comments Settings"
 msgstr "Cài đặt Init Recent Comments"
 
+#: includes/shortcodes.php:399
 msgid "Copy"
 msgstr "Sao chép"
 
+#: includes/shortcodes.php:400
 msgid "Copied!"
 msgstr "Đã sao chép!"
 
+#: includes/shortcodes.php:401
 msgid "Close"
 msgstr "Đóng"
 
+#: includes/shortcodes.php:402
 msgid "Shortcode Preview"
 msgstr "Xem trước shortcode"
 
+#: includes/settings-page.php:117
+#: includes/shortcodes.php:403
 msgid "Shortcode Builder"
 msgstr "Trình tạo shortcode"
 
+#: includes/shortcodes.php:405
+#: assets/js/blocks-editor.js:105
+#: assets/js/blocks-editor.js:221
 msgid "Number of Comments"
 msgstr "Số lượng bình luận"
 
+#: includes/shortcodes.php:406
 msgid "Pagination (optional)"
 msgstr "Phân trang (tùy chọn)"
 
+#: includes/shortcodes.php:407
+#: assets/js/blocks-editor.js:68
 msgid "Max Height (e.g. 300px)"
 msgstr "Chiều cao tối đa (vd: 300px)"
 
+#: includes/shortcodes.php:408
+#: assets/js/blocks-editor.js:54
 msgid "Theme"
 msgstr "Giao diện"
 
+#: templates/comment-item.php:77
 msgid "Replying to"
 msgstr "Trả lời"
 
-
+#: includes/abilities-api.php:33
 msgid "Abilities exposed by the Init Recent Comments plugin."
 msgstr "Các ability được plugin Init Recent Comments cung cấp."
 
+#: includes/abilities-api.php:54
 msgid "Get Recent Comments"
 msgstr "Lấy bình luận gần đây"
 
+#: includes/abilities-api.php:55
 msgid "Returns the most recent approved comments site-wide, the same data shown by the [init_recent_comments] shortcode."
 msgstr "Trả về các bình luận đã duyệt gần đây nhất trên toàn site — cùng dữ liệu hiển thị bởi shortcode [init_recent_comments]."
 
+#: includes/abilities-api.php:62
+#: includes/abilities-api.php:147
 msgid "Number of comments to return."
 msgstr "Số lượng bình luận cần trả về."
 
+#: includes/abilities-api.php:69
+#: includes/abilities-api.php:105
+#: includes/abilities-api.php:154
+#: includes/abilities-api.php:195
 msgid "Page number."
 msgstr "Số trang."
 
+#: includes/abilities-api.php:90
 msgid "Get Recent Reviews"
 msgstr "Lấy review gần đây"
 
+#: includes/abilities-api.php:91
 msgid "Returns the most recent approved reviews site-wide, the same data shown by the [init_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
 msgstr "Trả về các review đã duyệt gần đây nhất trên toàn site — cùng dữ liệu hiển thị bởi shortcode [init_recent_reviews]. Cần plugin Init Review System đang hoạt động; nếu không sẽ trả về danh sách rỗng."
 
+#: includes/abilities-api.php:98
+#: includes/abilities-api.php:188
 msgid "Number of reviews to return."
 msgstr "Số lượng review cần trả về."
 
+#: includes/abilities-api.php:126
 msgid "Get User Recent Comments"
 msgstr "Lấy bình luận gần đây của user"
 
+#: includes/abilities-api.php:127
 msgid "Returns the most recent approved comments by a specific user, the same data shown by the [init_user_recent_comments] shortcode."
 msgstr "Trả về các bình luận đã duyệt gần đây nhất của một user cụ thể — cùng dữ liệu hiển thị bởi shortcode [init_user_recent_comments]."
 
+#: includes/abilities-api.php:134
 msgid "Registered user ID. Takes priority over user_login/user_email."
 msgstr "ID user đã đăng ký. Ưu tiên hơn user_login/user_email."
 
+#: includes/abilities-api.php:139
 msgid "Username. Used if user_id is not provided."
 msgstr "Tên đăng nhập. Dùng nếu không cung cấp user_id."
 
+#: includes/abilities-api.php:143
 msgid "Email address, for matching guest comments. Used if neither user_id nor user_login is provided."
 msgstr "Địa chỉ email, dùng để khớp bình luận của khách. Dùng nếu không có cả user_id lẫn user_login."
 
+#: includes/abilities-api.php:433
 msgid "One of user_id, user_login, or user_email is required."
 msgstr "Cần cung cấp ít nhất một trong user_id, user_login, hoặc user_email."
 
+#: includes/abilities-api.php:175
 msgid "Get User Recent Reviews"
 msgstr "Lấy review gần đây của user"
 
+#: includes/abilities-api.php:176
 msgid "Returns the most recent reviews submitted by a specific user, the same data shown by the [init_user_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
 msgstr "Trả về các review gần đây nhất do một user cụ thể gửi — cùng dữ liệu hiển thị bởi shortcode [init_user_recent_reviews]. Cần plugin Init Review System đang hoạt động; nếu không sẽ trả về danh sách rỗng."
 
+#: includes/abilities-api.php:183
 msgid "Registered user ID."
 msgstr "ID user đã đăng ký."
 
+#: includes/abilities-api.php:201
 msgid "Review moderation status."
 msgstr "Trạng thái kiểm duyệt review."
 
+#: includes/abilities-api.php:465
 msgid "A valid user_id is required."
 msgstr "Cần một user_id hợp lệ."
 
+#: includes/abilities-api.php:337
+#: includes/abilities-api.php:339
+#: templates/review-item.php:25
 msgid "Anonymous"
 msgstr "Ẩn danh"
 
+#: assets/js/blocks-editor.js:103
 msgid "Recent Comments Settings"
 msgstr "Cài đặt Bình luận gần đây"
 
+#: assets/js/blocks-editor.js:78
 msgid "Page Number (0 = first page)"
 msgstr "Số trang (0 = trang đầu)"
 
+#: assets/js/blocks-editor.js:148
 msgid "Recent Reviews Settings"
 msgstr "Cài đặt Review gần đây"
 
+#: assets/js/blocks-editor.js:150
+#: assets/js/blocks-editor.js:278
 msgid "Number of Reviews"
 msgstr "Số lượng review"
 
+#: assets/js/blocks-editor.js:198
 msgid "User Recent Comments Settings"
 msgstr "Cài đặt Bình luận gần đây của user"
 
+#: assets/js/blocks-editor.js:200
+#: assets/js/blocks-editor.js:271
 msgid "User ID"
 msgstr "ID user"
 
+#: assets/js/blocks-editor.js:207
 msgid "Username (used if User ID is 0)"
 msgstr "Tên đăng nhập (dùng nếu ID user là 0)"
 
+#: assets/js/blocks-editor.js:214
 msgid "Email (used if User ID and Username are empty)"
 msgstr "Email (dùng nếu ID user và tên đăng nhập đều trống)"
 
+#: assets/js/blocks-editor.js:269
 msgid "User Recent Reviews Settings"
 msgstr "Cài đặt Review gần đây của user"
 
+#: assets/js/blocks-editor.js:285
 msgid "Status"
 msgstr "Trạng thái"
 
+#: assets/js/blocks-editor.js:287
 msgid "e.g. approved, pending"
 msgstr "vd: approved, pending"
 
+#: assets/js/blocks-editor.js:57
 msgid "Default"
 msgstr "Mặc định"
 
+#: assets/js/blocks-editor.js:58
 msgid "Dark"
 msgstr "Tối"
 
@@ -169,17 +244,22 @@ msgctxt "block description"
 msgid "Insert the most recent approved comments site-wide."
 msgstr "Chèn các bình luận đã duyệt gần đây nhất trên toàn site."
 
-#: blocks/recent-comments/block.json blocks/user-recent-comments/block.json
+#: blocks/recent-comments/block.json
+#: blocks/user-recent-comments/block.json
 msgctxt "block keyword"
 msgid "comments"
 msgstr "bình luận"
 
-#: blocks/recent-comments/block.json blocks/recent-reviews/block.json
+#: blocks/recent-comments/block.json
+#: blocks/recent-reviews/block.json
 msgctxt "block keyword"
 msgid "recent"
 msgstr "gần đây"
 
-#: blocks/recent-comments/block.json blocks/recent-reviews/block.json blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/recent-comments/block.json
+#: blocks/recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "init"
 msgstr "init"
@@ -194,7 +274,8 @@ msgctxt "block description"
 msgid "Insert the most recent approved reviews site-wide. Requires Init Review System."
 msgstr "Chèn các review đã duyệt gần đây nhất trên toàn site. Cần plugin Init Review System."
 
-#: blocks/recent-reviews/block.json blocks/user-recent-reviews/block.json
+#: blocks/recent-reviews/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "reviews"
 msgstr "review"
@@ -209,12 +290,14 @@ msgctxt "block description"
 msgid "Insert the most recent approved comments by a specific user."
 msgstr "Chèn các bình luận đã duyệt gần đây nhất của một user cụ thể."
 
-#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "user"
 msgstr "user"
 
-#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "author"
 msgstr "tác giả"
@@ -228,3 +311,35 @@ msgstr "Review gần đây của user"
 msgctxt "block description"
 msgid "Insert the most recent reviews submitted by a specific user. Requires Init Review System."
 msgstr "Chèn các review gần đây nhất do một user cụ thể gửi. Cần plugin Init Review System."
+
+#. Plugin URI of the plugin
+#: init-recent-comments.php
+msgid "https://inithtml.com/plugin/init-recent-comments/"
+msgstr "https://inithtml.com/plugin/init-recent-comments/"
+
+#. Description of the plugin
+#: init-recent-comments.php
+msgid "Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
+msgstr "Hiển thị bình luận gần đây với mẫu tùy chỉnh, block cho Block Editor, hỗ trợ Abilities API và CSS gọn gàng. Nhẹ, linh hoạt và được xây dựng cho các trang WordPress hiện đại."
+
+# Mô tả plugin từ phiên bản trước — giữ lại bản dịch.
+msgid "Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
+msgstr "Hiển thị bình luận gần đây với mẫu tùy chỉnh và CSS gọn gàng. Nhẹ, linh hoạt và được xây dựng cho các trang WordPress hiện đại."
+
+#. Author of the plugin
+#: init-recent-comments.php
+msgid "Init HTML"
+msgstr "Init HTML"
+
+#. Author URI of the plugin
+#: init-recent-comments.php
+msgid "https://inithtml.com/"
+msgstr "https://inithtml.com/"
+
+#: includes/abilities-api.php:508
+msgid "Sorry, you are not allowed to look up comments by email address."
+msgstr "Xin lỗi, bạn không có quyền tra cứu bình luận theo địa chỉ email."
+
+#: includes/abilities-api.php:534
+msgid "Sorry, you are not allowed to view reviews with this status."
+msgstr "Xin lỗi, bạn không có quyền xem đánh giá ở trạng thái này."

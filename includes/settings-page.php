@@ -1,18 +1,29 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+/**
+ * Trang Settings của plugin.
+ *
+ * @package InitRecentComments
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 // ===== REGISTER SETTINGS ===== //
-add_action( 'admin_init', function () {
+add_action( 'admin_init', 'init_plugin_suite_recent_comments_register_settings' );
+
+/**
+ * Đăng ký setting, section và field.
+ *
+ * @return void
+ */
+function init_plugin_suite_recent_comments_register_settings() {
 	register_setting(
 		INIT_PLUGIN_SUITE_IRC_SLUG . '_settings_group',
 		INIT_PLUGIN_SUITE_IRC_OPTION,
-		[
+		array(
 			'type'              => 'array',
 			'sanitize_callback' => 'init_plugin_suite_recent_comments_sanitize_settings',
-			'default'           => [],
-		]
+			'default'           => array(),
+		)
 	);
 
 	add_settings_section(
@@ -29,29 +40,49 @@ add_action( 'admin_init', function () {
 		INIT_PLUGIN_SUITE_IRC_SLUG,
 		INIT_PLUGIN_SUITE_IRC_SLUG . '_main_section'
 	);
-});
+}
 
 // ===== SANITIZE SETTINGS ===== //
+
+/**
+ * Sanitize settings.
+ *
+ * @param mixed $input Dữ liệu gửi lên từ form.
+ * @return array
+ */
 function init_plugin_suite_recent_comments_sanitize_settings( $input ) {
-	return [
-		'disable_css' => isset( $input['disable_css'] ) ? 1 : 0,
-	];
+	return array(
+		'disable_css' => ( is_array( $input ) && ! empty( $input['disable_css'] ) ) ? 1 : 0,
+	);
 }
 
 // ===== FIELD RENDER FUNCTION ===== //
+
+/**
+ * Render checkbox "Disable built-in CSS".
+ *
+ * @return void
+ */
 function init_plugin_suite_recent_comments_disable_css_field() {
 	$options = get_option( INIT_PLUGIN_SUITE_IRC_OPTION );
-	$checked = isset( $options['disable_css'] ) && $options['disable_css'] ? 'checked' : '';
+	$checked = is_array( $options ) && ! empty( $options['disable_css'] );
 	?>
 	<label>
-		<input type="checkbox" name="<?php echo esc_attr( INIT_PLUGIN_SUITE_IRC_OPTION ); ?>[disable_css]" value="1" <?php echo esc_attr( $checked ); ?> />
+		<input type="checkbox" name="<?php echo esc_attr( INIT_PLUGIN_SUITE_IRC_OPTION ); ?>[disable_css]" value="1" <?php checked( $checked ); ?> />
 		<?php esc_html_e( 'Use your own theme styling instead of the plugin’s CSS.', 'init-recent-comments' ); ?>
 	</label>
 	<?php
 }
 
 // ===== ADD SETTINGS PAGE TO MENU ===== //
-add_action( 'admin_menu', function () {
+add_action( 'admin_menu', 'init_plugin_suite_recent_comments_add_settings_page' );
+
+/**
+ * Thêm trang Settings vào menu.
+ *
+ * @return void
+ */
+function init_plugin_suite_recent_comments_add_settings_page() {
 	add_options_page(
 		__( 'Init Recent Comments Settings', 'init-recent-comments' ),
 		__( 'Init Recent Comments', 'init-recent-comments' ),
@@ -59,10 +90,19 @@ add_action( 'admin_menu', function () {
 		INIT_PLUGIN_SUITE_IRC_SLUG,
 		'init_plugin_suite_recent_comments_render_settings_page'
 	);
-});
+}
 
 // ===== RENDER PAGE HTML ===== //
+
+/**
+ * Render trang Settings.
+ *
+ * @return void
+ */
 function init_plugin_suite_recent_comments_render_settings_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Init Recent Comments Settings', 'init-recent-comments' ); ?></h1>
@@ -74,8 +114,8 @@ function init_plugin_suite_recent_comments_render_settings_page() {
 			?>
 		</form>
 
-		<h2><?php esc_html_e('Shortcode Builder', 'init-recent-comments'); ?></h2>
-        <div id="shortcode-builder-target" data-plugin="init-recent-comments"></div>
+		<h2><?php esc_html_e( 'Shortcode Builder', 'init-recent-comments' ); ?></h2>
+		<div id="shortcode-builder-target" data-plugin="init-recent-comments"></div>
 	</div>
 	<?php
 }

@@ -4,7 +4,7 @@ Tags: comments, recent comments, widget, shortcode, template
 Requires at least: 6.9  
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,8 @@ Each block shares the exact same rendering code as its shortcode, so switching b
 == Abilities API (WordPress 6.9+) ==
 
 On WordPress 6.9 and above, Init Recent Comments registers four read-only abilities under the `init-recent-comments` category — `get-recent-comments`, `get-recent-reviews`, `get-user-recent-comments`, and `get-user-recent-reviews` — mirroring the plugin's four shortcodes exactly. This plugin has no write actions at all (it's a pure display plugin), so all of its functionality is safely exposed. These abilities are discoverable and executable via PHP (`wp_get_abilities()`), and — for sites that opt in — the `wp-abilities/v1` REST namespace. This integration is fully optional: on WordPress versions older than 6.9, it silently does nothing and the rest of the plugin is unaffected.
+
+Privacy note: looking up guest comments by `user_email` through `get-user-recent-comments` requires the `moderate_comments` capability, and `get-user-recent-reviews` only returns non-approved reviews (`pending`, `rejected`, ...) to users with `manage_options`. Everything else stays public, exactly like the shortcodes.
 
 == Usage ==
 
@@ -140,6 +142,11 @@ Control the cache TTL (in seconds) for total approved comment counts across mult
 Applies to: Total by Post IDs Query  
 Params: `int $ttl`, `array $post_ids`
 
+`init_plugin_suite_recent_comments_visible_reviews`  
+Filter the list of reviews after reviews on non-public posts (draft, pending, private, deleted) have been removed.  
+Applies to: Recent Reviews and User Recent Reviews  
+Params: `array $visible`, `array $reviews`
+
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`
@@ -160,9 +167,28 @@ Yes! Go to **Settings → Init Recent Comments** and check the box to disable bu
 Absolutely. Copy `templates/comment-item.php` and `templates/wrapper.php` to your theme to override the output.
 
 = Will this plugin slow down my site? =  
-No. It uses `get_comments()` with sane defaults, no extra queries, no JavaScript.
+No. It uses `get_comments()` with sane defaults, loads related posts, users, and parent comments in batches (no per-item queries), and adds no front-end JavaScript.
 
 == Changelog ==
+
+= 2.0.1 – October 2, 2026 =
+- **Security**: recent comments (shortcodes, blocks, and abilities) now only include comments on published posts — the same rule as WordPress core's Recent Comments widget. Previously, approved comments on private or draft posts (and those posts' titles) could be shown publicly. The query can still be customized through `init_plugin_suite_recent_comments_query_args` / `init_plugin_suite_user_recent_comments_query_args`
+- **Security**: recent reviews (from Init Review System) now skip reviews whose post isn't publicly viewable (draft, pending, private, deleted), so those post titles, links, and review contents are no longer exposed. New filter `init_plugin_suite_recent_comments_visible_reviews` lets developers adjust the result
+- **Security (Abilities API)**: `get-user-recent-comments` only allows looking up guest comments by `user_email` for users who can moderate comments, so the public endpoint can no longer be used to match email addresses to commenters. Lookups by `user_id` / `user_login` are unchanged
+- **Security (Abilities API)**: `get-user-recent-reviews` only returns non-approved reviews (`pending`, `rejected`, ...) to users with the `manage_options` capability (the same capability Init Review System uses for review management). Approved reviews stay public
+- **Fix**: the `maxheight` attribute (and the block's "Max Height" setting) is now actually applied (e.g. `maxheight="300px"`). Previously the value was ignored and the list was always capped at 650px. Values that aren't a plain number + unit (px, em, rem, vh, vw, %) keep the old 650px behavior
+- **Fix**: the "Disable built-in CSS" option now also applies to the four blocks — previously a page using a block still loaded the plugin's stylesheet even with the option on
+- **Fix**: review links were double-escaped, breaking post URLs that contain query strings (e.g. `&` in plain permalinks)
+- **Fix**: "time ago" values are now calculated from GMT timestamps instead of the deprecated `current_time( 'timestamp' )` pattern, so they stay correct across timezones and DST
+- **Fix**: the Shortcode Builder's Copy / Close buttons and "Shortcode Preview" label are now translated (the script read the wrong i18n object), Copy also works on non-HTTPS admin screens, and labels are inserted as text instead of HTML — synced with the Init Review System 2.0.1 builder
+- **Fix**: the user shortcodes no longer leave an unclosed output buffer when a template file can't be found
+- **Fix**: the settings sanitizer now respects a `disable_css` value of `0` set programmatically
+- **Fix**: the Block Editor script now declares its `wp-data` dependency
+- **Performance**: posts, users, and parent comments are now loaded in batches before rendering — about 6 database queries instead of ~33 for 10 comments (and 5 instead of ~32 for 10 reviews) on sites without a persistent object cache
+- **Performance**: template files are located once per request instead of once per item
+- **Performance**: when caching is enabled through the TTL filters, cached lists are now invalidated automatically when comments, posts, or reviews change (using WordPress `last_changed` and Init Review System's cache version), so new comments show up immediately instead of after the TTL expires
+- **Code quality**: all PHP files now follow the WordPress Coding Standards (WPCS 3), matching the rest of the Init Plugin Suite
+- **i18n**: added the new strings to the `.pot` file and the Vietnamese translation
 
 = 2.0.0 – August 4, 2026 =
 - **New: Abilities API support (WordPress 6.9+)**: registers four read-only abilities under the `init-recent-comments` category — `get-recent-comments`, `get-recent-reviews`, `get-user-recent-comments`, and `get-user-recent-reviews` — mirroring all four shortcodes exactly. This plugin has no write actions, so all of its data is safely exposed. Discoverable and executable via PHP, `wp_get_abilities()`, and — when a site opts in — the `wp-abilities/v1` REST namespace. Fully optional and backward-compatible: on WordPress versions older than 6.9, the integration silently does nothing

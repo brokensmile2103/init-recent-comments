@@ -1,162 +1,267 @@
+# Copyright (C) 2026 Init HTML
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Init Recent Comments\n"
+"Project-Id-Version: Init Recent Comments 2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/init-recent-comments\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: vi\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-02T08:19:05+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: init-recent-comments\n"
 
+#. Plugin Name of the plugin
+#: init-recent-comments.php
+#: includes/abilities-api.php:32
+#: includes/blocks.php:43
+#: includes/settings-page.php:88
+#: includes/shortcodes.php:404
 msgid "Init Recent Comments"
 msgstr ""
 
-msgid "Display recent comments with customizable templates and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
+#. Plugin URI of the plugin
+#: init-recent-comments.php
+msgid "https://inithtml.com/plugin/init-recent-comments/"
 msgstr ""
 
-msgid "ago"
+#. Description of the plugin
+#: init-recent-comments.php
+msgid "Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS. Lightweight, flexible, and built for modern WordPress sites."
 msgstr ""
 
-msgid "In"
+#. Author of the plugin
+#: init-recent-comments.php
+msgid "Init HTML"
 msgstr ""
 
-msgid "General Settings"
+#. Author URI of the plugin
+#: init-recent-comments.php
+msgid "https://inithtml.com/"
 msgstr ""
 
-msgid "Disable built-in CSS"
-msgstr ""
-
-msgid "Use your own theme styling instead of the plugin’s CSS."
-msgstr ""
-
-msgid "Init Recent Comments Settings"
-msgstr ""
-
-msgid "Copy"
-msgstr ""
-
-msgid "Copied!"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Shortcode Preview"
-msgstr ""
-
-msgid "Shortcode Builder"
-msgstr ""
-
-msgid "Number of Comments"
-msgstr ""
-
-msgid "Pagination (optional)"
-msgstr ""
-
-msgid "Max Height (e.g. 300px)"
-msgstr ""
-
-msgid "Theme"
-msgstr ""
-
-msgid "Replying to"
-msgstr ""
-
-
+#: includes/abilities-api.php:33
 msgid "Abilities exposed by the Init Recent Comments plugin."
 msgstr ""
 
+#: includes/abilities-api.php:54
 msgid "Get Recent Comments"
 msgstr ""
 
+#: includes/abilities-api.php:55
 msgid "Returns the most recent approved comments site-wide, the same data shown by the [init_recent_comments] shortcode."
 msgstr ""
 
+#: includes/abilities-api.php:62
+#: includes/abilities-api.php:147
 msgid "Number of comments to return."
 msgstr ""
 
+#: includes/abilities-api.php:69
+#: includes/abilities-api.php:105
+#: includes/abilities-api.php:154
+#: includes/abilities-api.php:195
 msgid "Page number."
 msgstr ""
 
+#: includes/abilities-api.php:90
 msgid "Get Recent Reviews"
 msgstr ""
 
+#: includes/abilities-api.php:91
 msgid "Returns the most recent approved reviews site-wide, the same data shown by the [init_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
 msgstr ""
 
+#: includes/abilities-api.php:98
+#: includes/abilities-api.php:188
 msgid "Number of reviews to return."
 msgstr ""
 
+#: includes/abilities-api.php:126
 msgid "Get User Recent Comments"
 msgstr ""
 
+#: includes/abilities-api.php:127
 msgid "Returns the most recent approved comments by a specific user, the same data shown by the [init_user_recent_comments] shortcode."
 msgstr ""
 
+#: includes/abilities-api.php:134
 msgid "Registered user ID. Takes priority over user_login/user_email."
 msgstr ""
 
+#: includes/abilities-api.php:139
 msgid "Username. Used if user_id is not provided."
 msgstr ""
 
+#: includes/abilities-api.php:143
 msgid "Email address, for matching guest comments. Used if neither user_id nor user_login is provided."
 msgstr ""
 
-msgid "One of user_id, user_login, or user_email is required."
-msgstr ""
-
+#: includes/abilities-api.php:175
 msgid "Get User Recent Reviews"
 msgstr ""
 
+#: includes/abilities-api.php:176
 msgid "Returns the most recent reviews submitted by a specific user, the same data shown by the [init_user_recent_reviews] shortcode. Requires Init Review System to be active; returns an empty list otherwise."
 msgstr ""
 
+#: includes/abilities-api.php:183
 msgid "Registered user ID."
 msgstr ""
 
+#: includes/abilities-api.php:201
 msgid "Review moderation status."
 msgstr ""
 
-msgid "A valid user_id is required."
-msgstr ""
-
+#: includes/abilities-api.php:337
+#: includes/abilities-api.php:339
+#: templates/review-item.php:25
 msgid "Anonymous"
 msgstr ""
 
-msgid "Recent Comments Settings"
+#: includes/abilities-api.php:433
+msgid "One of user_id, user_login, or user_email is required."
 msgstr ""
 
-msgid "Page Number (0 = first page)"
+#: includes/abilities-api.php:465
+msgid "A valid user_id is required."
 msgstr ""
 
-msgid "Recent Reviews Settings"
+#: includes/abilities-api.php:508
+msgid "Sorry, you are not allowed to look up comments by email address."
 msgstr ""
 
-msgid "Number of Reviews"
+#: includes/abilities-api.php:534
+msgid "Sorry, you are not allowed to view reviews with this status."
 msgstr ""
 
-msgid "User Recent Comments Settings"
+#: includes/settings-page.php:31
+msgid "General Settings"
 msgstr ""
 
-msgid "User ID"
+#: includes/settings-page.php:38
+msgid "Disable built-in CSS"
 msgstr ""
 
-msgid "Username (used if User ID is 0)"
+#: includes/settings-page.php:72
+msgid "Use your own theme styling instead of the plugin’s CSS."
 msgstr ""
 
-msgid "Email (used if User ID and Username are empty)"
+#: includes/settings-page.php:87
+#: includes/settings-page.php:108
+msgid "Init Recent Comments Settings"
 msgstr ""
 
-msgid "User Recent Reviews Settings"
+#: includes/settings-page.php:117
+#: includes/shortcodes.php:403
+msgid "Shortcode Builder"
 msgstr ""
 
-msgid "Status"
+#: includes/shortcodes.php:399
+msgid "Copy"
 msgstr ""
 
-msgid "e.g. approved, pending"
+#: includes/shortcodes.php:400
+msgid "Copied!"
 msgstr ""
 
+#: includes/shortcodes.php:401
+msgid "Close"
+msgstr ""
+
+#: includes/shortcodes.php:402
+msgid "Shortcode Preview"
+msgstr ""
+
+#: includes/shortcodes.php:405
+#: assets/js/blocks-editor.js:105
+#: assets/js/blocks-editor.js:221
+msgid "Number of Comments"
+msgstr ""
+
+#: includes/shortcodes.php:406
+msgid "Pagination (optional)"
+msgstr ""
+
+#: includes/shortcodes.php:407
+#: assets/js/blocks-editor.js:68
+msgid "Max Height (e.g. 300px)"
+msgstr ""
+
+#: includes/shortcodes.php:408
+#: assets/js/blocks-editor.js:54
+msgid "Theme"
+msgstr ""
+
+#: templates/comment-item.php:58
+#: templates/review-item.php:79
+msgid "ago"
+msgstr ""
+
+#: templates/comment-item.php:63
+#: templates/review-item.php:85
+msgid "In"
+msgstr ""
+
+#: templates/comment-item.php:77
+msgid "Replying to"
+msgstr ""
+
+#: assets/js/blocks-editor.js:57
 msgid "Default"
 msgstr ""
 
+#: assets/js/blocks-editor.js:58
 msgid "Dark"
+msgstr ""
+
+#: assets/js/blocks-editor.js:78
+msgid "Page Number (0 = first page)"
+msgstr ""
+
+#: assets/js/blocks-editor.js:103
+msgid "Recent Comments Settings"
+msgstr ""
+
+#: assets/js/blocks-editor.js:148
+msgid "Recent Reviews Settings"
+msgstr ""
+
+#: assets/js/blocks-editor.js:150
+#: assets/js/blocks-editor.js:278
+msgid "Number of Reviews"
+msgstr ""
+
+#: assets/js/blocks-editor.js:198
+msgid "User Recent Comments Settings"
+msgstr ""
+
+#: assets/js/blocks-editor.js:200
+#: assets/js/blocks-editor.js:271
+msgid "User ID"
+msgstr ""
+
+#: assets/js/blocks-editor.js:207
+msgid "Username (used if User ID is 0)"
+msgstr ""
+
+#: assets/js/blocks-editor.js:214
+msgid "Email (used if User ID and Username are empty)"
+msgstr ""
+
+#: assets/js/blocks-editor.js:269
+msgid "User Recent Reviews Settings"
+msgstr ""
+
+#: assets/js/blocks-editor.js:285
+msgid "Status"
+msgstr ""
+
+#: assets/js/blocks-editor.js:287
+msgid "e.g. approved, pending"
 msgstr ""
 
 #: blocks/recent-comments/block.json
@@ -169,17 +274,22 @@ msgctxt "block description"
 msgid "Insert the most recent approved comments site-wide."
 msgstr ""
 
-#: blocks/recent-comments/block.json blocks/user-recent-comments/block.json
+#: blocks/recent-comments/block.json
+#: blocks/user-recent-comments/block.json
 msgctxt "block keyword"
 msgid "comments"
 msgstr ""
 
-#: blocks/recent-comments/block.json blocks/recent-reviews/block.json
+#: blocks/recent-comments/block.json
+#: blocks/recent-reviews/block.json
 msgctxt "block keyword"
 msgid "recent"
 msgstr ""
 
-#: blocks/recent-comments/block.json blocks/recent-reviews/block.json blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/recent-comments/block.json
+#: blocks/recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "init"
 msgstr ""
@@ -194,7 +304,8 @@ msgctxt "block description"
 msgid "Insert the most recent approved reviews site-wide. Requires Init Review System."
 msgstr ""
 
-#: blocks/recent-reviews/block.json blocks/user-recent-reviews/block.json
+#: blocks/recent-reviews/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "reviews"
 msgstr ""
@@ -209,12 +320,14 @@ msgctxt "block description"
 msgid "Insert the most recent approved comments by a specific user."
 msgstr ""
 
-#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "user"
 msgstr ""
 
-#: blocks/user-recent-comments/block.json blocks/user-recent-reviews/block.json
+#: blocks/user-recent-comments/block.json
+#: blocks/user-recent-reviews/block.json
 msgctxt "block keyword"
 msgid "author"
 msgstr ""
