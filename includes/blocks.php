@@ -1,7 +1,11 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+/**
+ * Block Editor integration.
+ *
+ * @package InitRecentComments
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 // ============================================================================
 // Block Editor integration
@@ -31,16 +35,15 @@ add_filter( 'block_categories_all', 'init_plugin_suite_recent_comments_block_cat
  *                                                mà hook 'block_categories_all' truyền vào).
  * @return array
  */
-// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-function init_plugin_suite_recent_comments_block_category( $categories, $editor_context ) {
+function init_plugin_suite_recent_comments_block_category( $categories, $editor_context ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 	return array_merge(
-		[
-			[
+		array(
+			array(
 				'slug'  => 'init-recent-comments',
 				'title' => __( 'Init Recent Comments', 'init-recent-comments' ),
 				'icon'  => 'admin-comments',
-			],
-		],
+			),
+		),
 		$categories
 	);
 }
@@ -51,11 +54,14 @@ add_action( 'init', 'init_plugin_suite_recent_comments_register_style_handle', 5
  * có thể tham chiếu qua "style" — WordPress sẽ tự enqueue đúng lúc, đúng chỗ
  * (cả trong Block Editor lẫn ngoài front-end) khi block thực sự được dùng.
  *
- * Handle này cũng được enqueue độc lập ở file plugin chính (tuỳ theo option
- * "disable_css") — đăng ký lại ở đây với cùng src là an toàn (WordPress chỉ
- * ghi đè bằng dữ liệu giống hệt), và đảm bảo handle luôn tồn tại sớm cho
- * riêng cơ chế "style" của block.json, kể cả khi trang chỉ dùng block mà CSS
- * mặc định đã bị tắt qua Settings.
+ * Handle này cũng được enqueue độc lập ở file plugin chính — đăng ký lại ở
+ * đây với cùng src là an toàn (WordPress chỉ ghi đè bằng dữ liệu giống hệt),
+ * và đảm bảo handle luôn tồn tại sớm cho riêng cơ chế "style" của block.json.
+ *
+ * Từ 2.0.1, khi CSS mặc định bị tắt (Settings hoặc filter
+ * 'init_plugin_suite_recent_comments_disable_css'), hàm enqueue ở file plugin
+ * chính thay handle này bằng một handle rỗng trên front-end — block cũng
+ * không còn tự nạp style.css nữa, đúng với tuỳ chọn người dùng đã chọn.
  *
  * Ưu tiên chạy trước (priority 5) hàm đăng ký block bên dưới.
  *
@@ -65,7 +71,7 @@ function init_plugin_suite_recent_comments_register_style_handle() {
 	wp_register_style(
 		'init-recent-comments-style',
 		INIT_PLUGIN_SUITE_IRC_ASSETS_URL . 'css/style.css',
-		[],
+		array(),
 		INIT_PLUGIN_SUITE_IRC_VERSION
 	);
 }
@@ -84,14 +90,15 @@ function init_plugin_suite_recent_comments_register_blocks() {
 	wp_register_script(
 		'init-recent-comments-blocks-editor',
 		INIT_PLUGIN_SUITE_IRC_ASSETS_URL . 'js/blocks-editor.js',
-		[
+		array(
 			'wp-blocks',
 			'wp-element',
 			'wp-block-editor',
 			'wp-components',
 			'wp-i18n',
 			'wp-server-side-render',
-		],
+			'wp-data',
+		),
 		INIT_PLUGIN_SUITE_IRC_VERSION,
 		true
 	);

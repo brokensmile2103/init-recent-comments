@@ -1,21 +1,38 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+/**
+ * Template: một comment (có thể override trong theme tại
+ * {theme}/init-recent-comments/comment-item.php).
+ *
+ * Vars:
+ * - $comment (WP_Comment) Comment cần hiển thị.
+ *
+ * Template luôn được include bên trong scope của một hàm, nên các biến dưới
+ * đây là biến cục bộ, không phải biến global.
+ *
+ * @package InitRecentComments
+ */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.WP.GlobalVariablesOverride.Prohibited
+
+defined( 'ABSPATH' ) || exit;
 
 if ( empty( $comment ) || ! $comment instanceof WP_Comment ) {
 	return;
 }
 
-$comment_link 	= get_comment_link( $comment );
-$author       	= get_comment_author( $comment );
-$post_title   	= get_the_title( $comment->comment_post_ID );
-$avatar       	= get_avatar_url( $comment, [ 'size' => 42 ] );
-$time_diff 	  	= is_a( $comment, 'WP_Comment' )
-			    	? human_time_diff( get_comment_time( 'U', false, false, $comment ), current_time( 'timestamp' ) )
-			    	: '';
+$comment_link = get_comment_link( $comment );
+$author       = get_comment_author( $comment );
+$post_title   = get_the_title( $comment->comment_post_ID );
+$avatar       = get_avatar_url( $comment, array( 'size' => 42 ) );
 
-$parent_author 	= '';
+// Thời gian theo GMT so với time(); comment cũ (import) có thể thiếu
+// comment_date_gmt thì quy đổi từ comment_date (giờ site).
+$comment_ts = ( '0000-00-00 00:00:00' !== $comment->comment_date_gmt )
+	? (int) get_comment_time( 'U', true, false, $comment )
+	: (int) get_gmt_from_date( $comment->comment_date, 'U' );
+$time_diff  = human_time_diff( $comment_ts, time() );
+
+$parent_author = '';
 if ( $comment->comment_parent ) {
 	$parent_comment = get_comment( $comment->comment_parent );
 	if ( $parent_comment ) {
