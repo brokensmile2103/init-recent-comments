@@ -3,7 +3,7 @@
  * Plugin Name: Init Recent Comments
  * Plugin URI: https://inithtml.com/plugin/init-recent-comments/
  * Description: Display recent comments with customizable templates, Block Editor blocks, Abilities API support, and clean CSS. Lightweight, flexible, and built for modern WordPress sites.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Init HTML
  * Author URI: https://inithtml.com/
  * Text Domain: init-recent-comments
@@ -20,7 +20,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // ===== CONSTANTS ===== //
-define( 'INIT_PLUGIN_SUITE_IRC_VERSION', '2.0.1' );
+define( 'INIT_PLUGIN_SUITE_IRC_VERSION', '2.0.2' );
 define( 'INIT_PLUGIN_SUITE_IRC_SLUG', 'init-recent-comments' );
 define( 'INIT_PLUGIN_SUITE_IRC_OPTION', 'init_plugin_suite_init_recent_comments_settings' );
 define( 'INIT_PLUGIN_SUITE_IRC_NAMESPACE', 'initreco/v1' );

@@ -4,7 +4,7 @@ Tags: comments, recent comments, widget, shortcode, template
 Requires at least: 6.9  
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,10 @@ Absolutely. Copy `templates/comment-item.php` and `templates/wrapper.php` to you
 No. It uses `get_comments()` with sane defaults, loads related posts, users, and parent comments in batches (no per-item queries), and adds no front-end JavaScript.
 
 == Changelog ==
+
+= 2.0.2 – November 2, 2026 =
+- **Performance**: comment meta for the whole list is now loaded in one batch when cached lists are enabled (TTL filters). Previously, a list served from the cache skipped WordPress's batch meta loading, so a theme or template reading comment meta (for example a spoiler flag) loaded it one comment at a time — 10 extra object cache or database lookups for 10 comments
+- **Performance**: the same applies to the user shortcodes and the Abilities API
 
 = 2.0.1 – October 2, 2026 =
 - **Security**: recent comments (shortcodes, blocks, and abilities) now only include comments on published posts — the same rule as WordPress core's Recent Comments widget. Previously, approved comments on private or draft posts (and those posts' titles) could be shown publicly. The query can still be customized through `init_plugin_suite_recent_comments_query_args` / `init_plugin_suite_user_recent_comments_query_args`

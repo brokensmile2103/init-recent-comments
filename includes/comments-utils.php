@@ -47,6 +47,12 @@ function init_plugin_suite_recent_comments_reviews_cache_salt() {
  * không nạp sẵn, mỗi comment có thể tốn thêm vài query riêng lẻ (N+1).
  * Gọi được nhiều lần: dữ liệu đã có trong cache sẽ được bỏ qua.
  *
+ * Từ 2.0.2: comment meta của cả danh sách được xếp hàng nạp lười
+ * (wp_lazyload_comment_meta) — lần đọc meta đầu tiên (của template hoặc theme,
+ * ví dụ đánh dấu spoiler) nạp meta của mọi comment trong 1 lượt. Khi danh sách
+ * lấy từ cache (TTL > 0), get_comments() không chạy nên trước đây meta bị nạp
+ * riêng lẻ cho từng comment.
+ *
  * @param WP_Comment[] $comments Danh sách comment.
  * @return void
  */
@@ -55,16 +61,18 @@ function init_plugin_suite_recent_comments_prime_comments( $comments ) {
 		return;
 	}
 
-	$post_ids   = array();
-	$user_ids   = array();
-	$parent_ids = array();
+	$post_ids    = array();
+	$user_ids    = array();
+	$parent_ids  = array();
+	$comment_ids = array();
 
 	foreach ( $comments as $comment ) {
 		if ( ! $comment instanceof WP_Comment ) {
 			continue;
 		}
 
-		$post_ids[] = (int) $comment->comment_post_ID;
+		$comment_ids[] = (int) $comment->comment_ID;
+		$post_ids[]    = (int) $comment->comment_post_ID;
 
 		if ( (int) $comment->user_id > 0 ) {
 			$user_ids[] = (int) $comment->user_id;
@@ -89,6 +97,12 @@ function init_plugin_suite_recent_comments_prime_comments( $comments ) {
 
 	if ( $parent_ids ) {
 		_prime_comment_caches( $parent_ids, false );
+	}
+
+	$comment_ids = array_unique( array_filter( $comment_ids ) );
+
+	if ( $comment_ids && function_exists( 'wp_lazyload_comment_meta' ) ) {
+		wp_lazyload_comment_meta( $comment_ids );
 	}
 }
 
